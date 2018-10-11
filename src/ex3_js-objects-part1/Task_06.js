@@ -3,18 +3,23 @@ var superObject = {
     typeNumber: 404,
     typeNull: null,
     typeBool: false,
-    typeObject: {a: 1, b: 2, c: 3}
+    typeObject: {a: 1,
+                 b: 2,
+                 c: {x: 'hello',
+                     y: 'world'
+                    }
+                }
 };
-var deepCopyObject = function(objName) {
-    var megaObject = {};
-    for (var key in objName) {
-        if (typeof(key) === 'object') {
+var megaObject = {};
+
+var deepCopyObject = function(objCopyFrom, objCopyTo) {
+    for (var key in objCopyFrom) {
+        if (typeof(objCopyFrom[key]) === 'object') {
             deepCopyObject(key);
         } else {
-            megaObject[key] = objName[key];
+            objCopyTo[key] = objCopyFrom[key];
         }
     }
-    console.log (megaObject);
 }
 
 deepCopyObject(superObject);
