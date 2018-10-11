@@ -15,11 +15,11 @@ var megaObject = {};
 var deepCopyObject = function(objCopyFrom, objCopyTo) {
     for (var key in objCopyFrom) {
         if (typeof(objCopyFrom[key]) === 'object') {
-            deepCopyObject(key);
+            deepCopyObject(objCopyFrom[key], objCopyTo[key]);
         } else {
             objCopyTo[key] = objCopyFrom[key];
         }
     }
 }
 
-deepCopyObject(superObject);
+deepCopyObject(superObject, megaObject);
